@@ -111,6 +111,45 @@ Usamos un gestor de dependencias. Lo agregamos en nuestro gestor de dependencia;
 ![Anatomia](./screenshots/anatomia2.png)
 
 ## 3. Esquemas y relaciones
+
+### Tipos de datos
+
+- [BSON Types](https://docs.mongodb.com/manual/reference/bson-types/)
+- [MongoDB Limits and Thresholds](https://docs.mongodb.com/manual/reference/limits/)
+
+- **Strings:** Nos sirven para guardar textos.
+- **Boolean:** Información cierta o falsa (true y false).
+- **ObjectId:** Utilizan el tiempo exacto en el que generamos la consulta para siempre generan IDs únicos. Existen en BSON pero no en JSON.
+- **Date:** Nos sirven para guardar fechas y hacer operaciones de rangos entre ellas.
+- **Números:** 
+  - Double
+  - Integer 32 bits
+  - Integer 64 bits
+  - Decimal -> Más enfocado a información financiera
+- **Documentos Embebidos:** Documentos dentro de otros documentos ({ { { }, { }}}).
+  ![Documentos embebidos](./screenshots/docs-embebidos.png)
+- **Arrays:** Arreglos o listas de cualquier otro tipo de datos, incluso, de otras listas.
+  ![Documentos embebidos](./screenshots/arrays-docsEmbebidos.png)
+
+### ¿Qué son los esquemas y las relaciones?
+
+- [¿Que es SQL y NoSQL? - PlatziYoutube](https://www.youtube.com/watch?v=CuAYLX6reXE)
+- [que es sql y nosql? cuales son sus diferencias y cuando deberías utilizarlos - HolaMundoYoutube](https://www.youtube.com/watch?v=zmXl2dOGWL8)
+- [NoSQL vs SQL - Diferencia entre MongoDB y MySQL - Bases de datos no relacionales - Víctor Robles](https://www.youtube.com/watch?v=b_zr8t2g2Ic)
+- **Los esquemas** son la forma en que organizamos nuestros documentos en nuestras colecciones.
+  - MongoDB no impone ningún esquema pero podemos seguir buenas prácticas y estructurar nuestros documentos de forma parecida (no igual) para aprovechar la flexibilidad y escalabilidad de la base de datos sin aumentar la complejidad de nuestras aplicaciones.
+- **Las relaciones** son la forma en que nuestras entidades o documentos sen encuentran enlazados unos con otros. 
+  - Por ejemplo: Una carrera tiene multiples cursos y cada curso tiene multiples clases.
+
+### Relaciones entre documentos
+
+- [Model Relationships Between Documents](https://docs.mongodb.com/manual/applications/data-models-relationships/)
+
+Las documentos embebidos nos ayudan a guardar la información en un solo documento y nos ahorra el tiempo que tardamos en consultar diferentes documentos a partir de referencias. Sin embargo, las referencias siguen siendo muy importantes cuando debemos actualizar información en diferentes lugares de forma continua.
+
+- **One to one:** Documentos embebidos
+- **One to many:** Documentos embebidos cuando la información no va a cambiar muy frecuentemente y referencias cuando si.
+
 ## 4. Profundización de queries dentro de MongoDB
 ## 5. Python con MongoDB (opcional)
 ## 6. Recomendaciones para poner en producción tu cluster de Atlas
