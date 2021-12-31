@@ -77,8 +77,39 @@ Usamos un gestor de dependencias. Lo agregamos en nuestro gestor de dependencia;
 
 ![CRUD](./screenshots/inicio-rapido.png)
 
-
 ## 2. Operaciones CRUD
+
+- [Cosas-básicas-de-un-crud-en-mongodb](https://platzi.com/tutoriales/1533-mongodb/4102-cosas-basicas-de-un-crud-en-mongodb/)
+- [MongoDB CRUD Operations](https://docs.mongodb.com/manual/crud/)
+- [MongoDB Cheat Sheet - Official Docs](https://www.mongodb.com/developer/quickstart/cheat-sheet/)
+- [MongoDB Cheat Sheet - Dev](https://gist.github.com/bradtraversy/f407d642bdc3b31681bc7e56d95485b6)
+
+### Bases de datos, Colecciones y Documentos en MongoDB
+- **Los Cluster** 
+  - Son un grupo de servidores.
+  - Pueden tener múltiples bases de datos.
+- **Las Bases de Datos** 
+  - Son los contenedores físicos para nuestras colecciones.
+  - Cada base de datos tiene un archivo propio en el sistema de archivos de nuestra computadora o servidor.
+- **Las Colecciones** 
+  - Son agrupaciones de documentos.
+  - Son equivalentes a las tablas en bases de datos relacionales.
+  - NO nos imponen un esquema o estructura rígida para guardar información.
+- **Los Documentos** 
+  - Son registros dentro de las colecciones.
+  - Son la unidad básica de MongoDB
+  - Son análogos a los objetos JSON pero en realidad son BSON (Binary JSON).
+
+![terms](./screenshots/terms.png)
+
+>Un Clouster puede tener varias Bases de datos, en una Base de datos pueden haber muchas colleciones, en la collección pueden haber muchos documentos
+
+- [Atomicity and Transactions](https://docs.mongodb.com/manual/core/write-operations-atomicity/)
+- [Query Documents](https://docs.mongodb.com/manual/tutorial/query-documents/)
+
+![Anatomia](./screenshots/anatomia1.png)
+![Anatomia](./screenshots/anatomia2.png)
+
 ## 3. Esquemas y relaciones
 ## 4. Profundización de queries dentro de MongoDB
 ## 5. Python con MongoDB (opcional)
