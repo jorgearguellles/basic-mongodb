@@ -53,6 +53,29 @@ MongoDb es:
 - Disponible en AWS, GCP y Microsoft Azure
 - Fácil monitoreo y optimización
 
+### Lista de comandos en la termina del Mongo DB
+- **use nombreDB:** Es el comando para crear una base de datos con el nombre **nombreDB**
+- **db:** Es el comando para saber en que BD estoy en este monento
+- **show dbs:** Es el comando para mostrar las BD existentes
+- **show collections:** Es el comando para mostrar las colleciones en la BD en la que estoy trabajando
+
+### MongoDB + Drivers
+
+**¿Qué son los Drivers en MongoDB?**
+Son librerias que utilizamos para couminar nuestra appliacaión con nuestra base de datos. Sin nuestros drivers no podemos trabajar con nuestros cluster de base de datos.
+
+![Arquitectura](./screenshots/arquitectura-mongodb.png)
+
+**¿Cómo agregar los drivers dentro de nuestro proyecto?**
+Usamos un gestor de dependencias. Lo agregamos en nuestro gestor de dependencia;
+- **Python:** ```python -m pip install pymongo```
+- **Node.js:** ```npm install mongodb --save```
+- **Ruby:** ```gem install mongoid```
+- **GO:** ```dep ensure -add go.mongodb.org/mongo-driver/mongo```
+- **Java con maven:**
+```# build.gradle compile 'org.mongodb:mongo-java-driver:2.12.3'```
+
+![CRUD](./screenshots/inicio-rapido.png)
 
 
 ## 2. Operaciones CRUD
