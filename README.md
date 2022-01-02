@@ -111,6 +111,101 @@ Usamos un gestor de dependencias. Lo agregamos en nuestro gestor de dependencia;
 ![Anatomia](./screenshots/anatomia2.png)
 
 ## 3. Esquemas y relaciones
+
+### Tipos de datos
+
+- [BSON Types](https://docs.mongodb.com/manual/reference/bson-types/)
+- [MongoDB Limits and Thresholds](https://docs.mongodb.com/manual/reference/limits/)
+
+- **Strings:** Nos sirven para guardar textos.
+- **Boolean:** Información cierta o falsa (true y false).
+- **ObjectId:** Utilizan el tiempo exacto en el que generamos la consulta para siempre generan IDs únicos. Existen en BSON pero no en JSON.
+- **Date:** Nos sirven para guardar fechas y hacer operaciones de rangos entre ellas.
+- **Números:** 
+  - Double
+  - Integer 32 bits
+  - Integer 64 bits
+  - Decimal -> Más enfocado a información financiera
+- **Documentos Embebidos:** Documentos dentro de otros documentos ({ { { }, { }}}).
+  ![Documentos embebidos](./screenshots/docs-embebidos.png)
+- **Arrays:** Arreglos o listas de cualquier otro tipo de datos, incluso, de otras listas.
+  ![Documentos embebidos](./screenshots/arrays-docsEmbebidos.png)
+
+### ¿Qué son los esquemas y las relaciones?
+
+- [¿Que es SQL y NoSQL? - PlatziYoutube](https://www.youtube.com/watch?v=CuAYLX6reXE)
+- [que es sql y nosql? cuales son sus diferencias y cuando deberías utilizarlos - HolaMundoYoutube](https://www.youtube.com/watch?v=zmXl2dOGWL8)
+- [NoSQL vs SQL - Diferencia entre MongoDB y MySQL - Bases de datos no relacionales - Víctor Robles](https://www.youtube.com/watch?v=b_zr8t2g2Ic)
+- **Los esquemas** son la forma en que organizamos nuestros documentos en nuestras colecciones.
+  - MongoDB no impone ningún esquema pero podemos seguir buenas prácticas y estructurar nuestros documentos de forma parecida (no igual) para aprovechar la flexibilidad y escalabilidad de la base de datos sin aumentar la complejidad de nuestras aplicaciones.
+- **Las relaciones** son la forma en que nuestras entidades o documentos sen encuentran enlazados unos con otros. 
+  - Por ejemplo: Una carrera tiene multiples cursos y cada curso tiene multiples clases.
+
+### Relaciones entre documentos
+
+- [Model Relationships Between Documents](https://docs.mongodb.com/manual/applications/data-models-relationships/)
+
+Las documentos embebidos nos ayudan a guardar la información en un solo documento y nos ahorra el tiempo que tardamos en consultar diferentes documentos a partir de referencias. Sin embargo, las referencias siguen siendo muy importantes cuando debemos actualizar información en diferentes lugares de forma continua.
+
+- **One to one:** Documentos embebidos
+- **One to many:** Documentos embebidos cuando la información no va a cambiar muy frecuentemente y referencias cuando si.
+
 ## 4. Profundización de queries dentro de MongoDB
+-[Query Documents](https://docs.mongodb.com/manual/tutorial/query-documents/)
+- [Operators](https://docs.mongodb.com/manual/reference/operator/)
+
+### Operadores para realizar queries y proyecciones
+
+- ¿Qué es una Querie?
+Es una petición que se realiza a la base de datos por valores 
+
+- ¿Qué es una proyección?
+Las proyecciones las usamos cuando queremos traer uno o dos valores al interior de un documento
+```js
+db.inventory.findOne()({/*FILTRO*/}, {/*VALORES QUE QUEREMOS TRAERNOS*/}})
+db.inventory.findOne()({status: "A"}, {item: 1, status:1}})
+```
+
+- ¿Qué es un Filtro?
+El filtro recibe operadores para especificar que se quiere y como se quiere filtrar
+```js
+db.inventory.find()({status: {$in: ["A", "B"]}})
+```
+
+- **Operadores de comparación en MongoDB.**
+  - **$eq:** Igual ‘=’.
+  - **$gt:** Mayor ‘>’.
+  - **$gte:** Mayor o igual ‘>=’.
+  - **$lt:** Menor ‘<’.
+  - **$lte:** Menor o igual ‘<=’.
+  - **$ne:** Diferente ‘!=’.
+  - **$in:** Valores dentro de un arreglo.
+  - **$nin:** Valores que no están dentro de un arreglo.
+- **Operadores lógicos.**
+  - **$and:** Une queries con un and lógico.
+  - **$not:** Invierte el efecto de un query.
+  - **$nor:** Une queries con un nor lógico.
+  - **$or:** Une queries con un or lógico.
+- **Operadores por elemento.**
+  - **$exist:** Documentos que cuentan con un campo específico.
+  - **$type:** Documentos que cuentan con un campo de un tipo específico.
+- **Operadores para arreglo.**
+  - **$all:** Arreglos que contengan todos los elementos de la query.
+  - **$elementMatch:** Documentos que cumplen la condición del $elementMatch en uno de sus elementos.
+  - **$size:** Documentos que contienen un capo tipo arreglo de un tamaño específico.
+
+### Operaciones avanzadas con Agregaciones
+
+- [Aggregation](https://docs.mongodb.com/manual/aggregation/)
+- [MongoDB Aggregation Pipeline by Example: Part 1](https://codeburst.io/mongodb-aggregation-pipeline-by-example-part-1-77accb976bd0)
+
+Las agregaciones son operaciones avanzadas que podemos realizar sobre nuestra base de datos con un poco más de flexibilidad en nuestros documentos.
+
+**Pipeline de Agregaciones:** Es un grupo de multiples etapas que ejecutan agregaciones en diferentes momentos. Debemos tener muy en cuenta el performance de nuestras agregaciones porque las agregaciones corren en todo el cluster.
+
+**Map-Reduce:** Nos permite definir funciones de JavaScript para ejecutar operaciones avanzadas. La función de map nos permite definir o “mappear” los campos que queremos usar y la función reduce nos permite ejecutar operaciones y devolver resultados especiales. Por ejemplo: podemos mappear algunos campos y calcular la cantidad de elementos que cumplen ciertas condiciones.
+
+**Agregaciones de propósito único:** Funciones ya definidas que nos ayudan a calcular un resultado especial pero debemos tener cuidado porque pueden mejorar o afectar el performance de la base de datos. Por ejemplo: count(), estimatedDocumentCount y distinct.
+
 ## 5. Python con MongoDB (opcional)
 ## 6. Recomendaciones para poner en producción tu cluster de Atlas
